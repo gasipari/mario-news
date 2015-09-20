@@ -26,8 +26,12 @@ app.controller('MainCtrl', ['$scope', function($scope) {
     	if (!$scope.title || $scope.title === '') {
     		return;
     	};
-    	$scope.posts.push({title: $scope.title, upvotes: 0});
+    	$scope.posts.push({
+            title: $scope.title,
+            link: $scope.link, 
+            upvotes: 0});
     	$scope.title = '';
+        $scope.link = '';
     }
 
     // upvoting an existing post
