@@ -1,25 +1,22 @@
 var app = angular.module('marioNews', []);
 
-app.controller('MainCtrl', ['$scope', function($scope) {
+// posts service
+app.factory('posts', [function(){
+    var o = {
+        posts: []
+    };
+    return o;
+}])
+
+app.controller('MainCtrl', [
+    '$scope', 
+    'posts',
+    function($scope, posts) {
     
     // $scope variable
     $scope.test = 'Hello Marius!';
-    $scope.posts = [{
-        title: 'post 1',
-        upvotes: 5
-    }, {
-        title: 'post 2',
-        upvotes: 2
-    }, {
-        title: 'post 3',
-        upvotes: 15
-    }, {
-        title: 'post 4',
-        upvotes: 9
-    }, {
-        title: 'post 5',
-        upvotes: 4
-    }];
+    // bind $scope.posts variable to the posts array in the posts service
+    $scope.posts = posts.posts;
 
     // add new post
     $scope.addPost = function(){
