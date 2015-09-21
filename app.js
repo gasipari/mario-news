@@ -1,4 +1,22 @@
-var app = angular.module('marioNews', []);
+var app = angular.module('marioNews', ['ui.router']);
+
+
+// config
+app.config([
+    '$stateProvider',
+    '$urlRouterProvider',
+    function($stateProvider, $urlRouterProvider) {
+    
+    // set up home route
+    $stateProvider
+        .state('home', {
+            url: '/home',
+            templateUrl: '/home.html',
+            controller: 'MainCtrl'
+        });
+    // handle the route if the app receives a URL that is not defined
+    $urlRouterProvider.otherwise('home');
+}]);
 
 // posts service
 app.factory('posts', [function(){
@@ -8,6 +26,7 @@ app.factory('posts', [function(){
     return o;
 }])
 
+// main controller
 app.controller('MainCtrl', [
     '$scope', 
     'posts',
